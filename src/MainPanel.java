@@ -50,18 +50,20 @@ public class MainPanel extends JPanel {
         if (judgeInputSelector.isFileSelected()) judgeInputLabel.setText("File: " + judgeInputSelector.getFile().getName()); else judgeInputLabel.setText("File: ");
         if (judgeOutputSelector.isFileSelected()) judgeOutputLabel.setText("File: " + judgeOutputSelector.getFile().getName()); else judgeOutputLabel.setText("File: ");
 
-        runLabel.setText("Status: " + switch (status) {
-            case READY -> "Ready";
-            case COPYING -> "Copying";
-            case COMPILING -> "Compiling";
-            case COMPILE_TIME_ERROR -> "Compile Time Error";
-            case RUNNING -> "Running";
-            case RUN_TIME_ERROR -> "Run Time Error";
-            case GRADING -> "Grading";
-            case WRONG_ANSWER -> "Wrong Answer";
-            case ACCEPTED -> "Accepted";
-            default -> "Not Ready";
-        });
+        runLabel.setText("Status: " + getStatusFromCode(status));
+    }
+
+    public String getStatusFromCode(int status) {
+        if (status == READY) return "Ready";
+        if (status == COPYING) return "Copying";
+        if (status == COMPILING) return "Compiling";
+        if (status == COMPILE_TIME_ERROR) return "Compile Time Error";
+        if (status == RUNNING) return "Running";
+        if (status == RUN_TIME_ERROR) return "Run Time Error";
+        if (status == GRADING) return "Grading";
+        if (status == WRONG_ANSWER) return "Wrong Answer";
+        if (status == ACCEPTED) return "Accepted";
+        return "Not Ready";
     }
 
     public void setStatus(int status) {
